@@ -9,5 +9,5 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 50 }
 
   # Relations 
-  has_many :posts
+  # has_many :posts, dependent: destroy
 end

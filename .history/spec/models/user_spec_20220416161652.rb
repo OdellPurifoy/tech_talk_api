@@ -12,5 +12,5 @@ RSpec.describe User, type: :model do
   it { should validate_length_of(:email).is_at_most(50) }
 
   # Relation specs
-  it { should have_many(:posts) }
+  it { should have_many(:posts).dependent(:destroy) }
 end
