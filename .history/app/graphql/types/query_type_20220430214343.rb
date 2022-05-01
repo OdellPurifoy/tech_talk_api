@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Types
   class QueryType < Types::BaseObject
     # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
@@ -15,7 +13,7 @@ module Types
       argument :id, ID, required: true
     end
     def user(id:)
-      User.find(id)
+      User.find(id) 
     end
   end
 end
