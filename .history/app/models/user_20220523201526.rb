@@ -4,10 +4,10 @@ class User < ApplicationRecord
   has_secure_password
 
   # Presence Validations
-  validates :first_name, :last_name, :email, :username, presence: true
+  validates :first_name, :last_name, :email, username, presence: true
 
   # Uniqueness Validations
-  validates :email, :username, uniqueness: true
+  validates :email, username, uniqueness: true
 
   # Length Validations
   validates :email, length: { maximum: 50 }
