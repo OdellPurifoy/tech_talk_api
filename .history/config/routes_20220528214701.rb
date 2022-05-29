@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
-  post '/logout', to: 'sessionsrs#destroy'
   post '/authorized', to: 'sessions#show'
   post '/dashboard', to: 'users#show'
 
