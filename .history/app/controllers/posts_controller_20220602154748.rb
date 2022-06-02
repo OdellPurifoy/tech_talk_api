@@ -2,7 +2,6 @@
 
 class PostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
-  
   def index
     render json: Post.all
   end

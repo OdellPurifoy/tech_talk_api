@@ -32,10 +32,4 @@ class ApplicationController < ActionController::API
   def logged_in?
     !!current_user
   end
-
-  private
-
-  def not_destroyed(e)
-    render json: { errors: e.record.errors }, status: :unprocessable_entity
-  end
 end

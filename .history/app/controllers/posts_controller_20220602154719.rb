@@ -2,7 +2,6 @@
 
 class PostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
-  
   def index
     render json: Post.all
   end
@@ -20,15 +19,13 @@ class PostsController < ApplicationController
     post = Post.find(params[:id]).destroy!
     
     head :no_content
+  rescue ActiveRecord::RecordNotDestroyed
+    render json: {}, status: :unprocessable_entity
   end 
 
   private
 
   def post_params
     params.require(:post).permit(:title, :body)
-  end
-
-  def not_destroyed
-    render json: {}, status: :unprocessable_entity
   end
 end
