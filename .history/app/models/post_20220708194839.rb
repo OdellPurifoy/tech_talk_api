@@ -2,7 +2,7 @@
 
 class Post < ApplicationRecord
   # Relations
-  belongs_to :user
+  # belongs_to :user
 
   # Presence validations
   validates_presence_of :title, :body

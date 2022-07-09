@@ -31,7 +31,7 @@ RSpec.describe 'Posts API', type: :request do
 
   describe 'DELETE /posts/:id' do
     let(:user) { FactoryBot.create(:user) }
-    let!(:post) { FactoryBot.create(:post, title: 'Test title', body: 'Test body', user: user ) }
+    let!(:post) { FactoryBot.create(:post, title: 'Test title', body: 'Test body', user: ) }
 
     it 'deletes a post' do
       expect {

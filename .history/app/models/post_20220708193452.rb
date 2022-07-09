@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   belongs_to :user
 
   # Presence validations
-  validates_presence_of :title, :body
+  validates :title, :body, presence: true
 
   # Length Validations
   validates :title, length: { maximum: 50 }
