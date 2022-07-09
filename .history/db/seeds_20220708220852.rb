@@ -1,6 +1,6 @@
 require 'faker'
 
-10.times do
+50.times do
     user = User.create(
       email: Faker::Internet.email,
       first_name: Faker::Name.first_name,
@@ -10,6 +10,6 @@ require 'faker'
     Post.create(
       user: user,
       title: Faker::Movie.title,
-      body: Faker::Date.between(from: '2000-01-01', to: '2021-01-01').year,
+      body: Faker::Lorem.paragraph(sentence_count: 5)
     )
 end

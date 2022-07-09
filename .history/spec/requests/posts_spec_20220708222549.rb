@@ -54,8 +54,6 @@ RSpec.describe 'Posts API', type: :request do
     end
 
     it 'has a max limit of 100' do
-      expect(Post).to receive(:limit).with(100).and_call_original
-
       get '/api/v1/posts', params: { limit: 999 }
     end
   end

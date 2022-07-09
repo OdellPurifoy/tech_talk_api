@@ -3,9 +3,7 @@ require 'faker'
 user = User.create(
   email: Faker::Internet.email,
   first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  username: "Someusername",
-  password: SecureRandom.uuid
+  last_name: Faker::Name.last_name
 ).save
 
 50.times do 

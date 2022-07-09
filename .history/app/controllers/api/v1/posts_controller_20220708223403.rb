@@ -31,10 +31,7 @@ module Api
       private
 
       def limit
-        [
-          params.fetch(:limit, MAX_PAGINATION_LIMIT).to_i, 
-          MAX_PAGINATION_LIMIT
-        ].min
+        [params.fetch(:limit, 100).to_i, 100].min
       end
 
       def user_params
