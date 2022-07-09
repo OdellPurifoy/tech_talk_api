@@ -9,8 +9,8 @@ user = User.create(
 ).save
 
 50.times do 
-  user.posts.build(
+  user.post.create(
     title: Faker::Movie.title,
     body: Faker::Lorem.paragraph(sentence_count: 5)
-  ).save
+  )
 end

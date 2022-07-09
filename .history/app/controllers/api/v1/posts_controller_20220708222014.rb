@@ -3,10 +3,8 @@
 module Api
   module V1
     class PostsController < ApplicationController
-      MAX_PAGINATION_LIMIT = 100
-
       def index
-        posts = Post.limit(limit).offset(params[:offset])
+        posts = Post.limit(params[:limit]).offset(params[:offset])
 
         render json: PostsRepresenter.new(posts).as_json
       end
@@ -29,13 +27,6 @@ module Api
       end
 
       private
-
-      def limit
-        [
-          params.fetch(:limit, MAX_PAGINATION_LIMIT).to_i, 
-          MAX_PAGINATION_LIMIT
-        ].min
-      end
 
       def user_params
         params.require(:user).permit(:first_name, :last_name, :email, :username, :password)

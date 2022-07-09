@@ -35,28 +35,11 @@ RSpec.describe 'Posts API', type: :request do
       )
     end
 
-    it 'returns a subset of posts based on limit' do
+    it 'returns a subset of posts based on pagination' do
       get '/api/v1/posts', params: { limit: 1 }
 
       expect(response).to have_http_status(:success)
       expect(response_body.size).to eq(1)
-    end
-
-    it 'returns a subset of post based on limit AND offset' do
-      get '/api/v1/posts', params: { limit: 1, offset: 1 }
-
-      expect(response_body).to eq([
-        { 'body' => 'Test body',
-          'id' => 55,
-          'title' => 'Test title',
-          'username' => 'Sanda_Rutherford' }
-      ])
-    end
-
-    it 'has a max limit of 100' do
-      expect(Post).to receive(:limit).with(100).and_call_original
-
-      get '/api/v1/posts', params: { limit: 999 }
     end
   end
 
