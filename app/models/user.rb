@@ -3,6 +3,9 @@
 class User < ApplicationRecord
   has_secure_password
 
+  # Relations 
+  has_many :posts, dependent: :destroy
+
   # Presence Validations
   validates :first_name, :last_name, :email, :username, presence: true
 
@@ -13,7 +16,4 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 50 }
   validates :first_name, :last_name, length: { maximum: 25 }
   validates :username, length: { minimum: 4 }
-
-  # Relations 
-  has_many :posts
 end

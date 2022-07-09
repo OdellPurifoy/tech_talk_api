@@ -20,5 +20,5 @@ RSpec.describe User, type: :model do
   it { should validate_uniqueness_of(:username) }
 
   # Relation specs
-  it { should have_many(:posts) }
+  it { should have_many(:posts).dependent(:destroy) }
 end
