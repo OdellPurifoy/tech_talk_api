@@ -6,13 +6,11 @@ module Api
     rescue_from ActionController::ParameterMissing, with: :parameter_missing
 
       def create
-        # p params.require(:password).inspect
-
-        user = User.find_by(username: params.require(:username))
+        User.find_by(username: params.require[:username]).inspect
         
-        token = AuthenticationTokenService.call(user.id)
+        p params.require(:password).inspect
 
-        render json: { token: token  }, status: :created
+        render json: { token: '123' }, status: :created
       end
 
       private

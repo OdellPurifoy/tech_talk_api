@@ -10,9 +10,9 @@ module Api
 
         user = User.find_by(username: params.require(:username))
         
-        token = AuthenticationTokenService.call(user.id)
+        AuthenticationTokenService.call(user.id)
 
-        render json: { token: token  }, status: :created
+        render json: { token: '123' }, status: :created
       end
 
       private

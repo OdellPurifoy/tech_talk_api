@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Authentication', type: :request do
   describe 'POST /authenticate' do
-    let!(:user) { FactoryBot.create(:user, username: "Superman") }
+    let!(:user) { FactoryBot.create(:user) }
 
     it 'authenticates the client' do
       post '/api/v1/authenticate', params: { username: user.username , password: user.password }

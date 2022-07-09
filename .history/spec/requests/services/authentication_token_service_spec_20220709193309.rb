@@ -18,7 +18,7 @@ describe AuthenticationTokenService do
 
       expect(decoded_token).to eq(
         [
-          { 'user_id' => 1 },
+          { 'data' => 'test' },
           { 'alg' => 'HS256' }
 
         ]
