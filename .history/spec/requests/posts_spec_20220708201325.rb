@@ -13,7 +13,7 @@ RSpec.describe 'Posts API', type: :request do
       get '/api/v1/posts'
 
       expect(response).to have_http_status(:success)
-      expect(JSON.parse(response.body).size).to eq(3)
+      expect(JSON.parse(response.body).size).to eq(2)
     end
   end
 
@@ -30,8 +30,7 @@ RSpec.describe 'Posts API', type: :request do
   # end
 
   describe 'DELETE /posts/:id' do
-    let(:user) { FactoryBot.create(:user) }
-    let!(:post) { FactoryBot.create(:post, title: 'Test title', body: 'Test body', user: user ) }
+    let!(:post) { FactoryBot.create(:post, title: 'Test title', body: 'Test body', user: FactoryBot.create(:user, first_name: 'Odell', last_name: 'Test', email: 'odell@example11324.com', username: 'Testuser3wert', password: 'password')) }
 
     it 'deletes a post' do
       expect {

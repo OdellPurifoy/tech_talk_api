@@ -14,11 +14,12 @@ module Api
           render json: post, status: :created
         else
           render json: post.errors, status: :unprocessable_entity
+          byebug
         end
       end
 
       def destroy
-        Post.find(params[:id]).destroy!
+        post = Post.find(params[:id]).destroy!
 
         head :no_content
       end
@@ -26,7 +27,7 @@ module Api
       private
 
       def post_params
-        params.require(:post).permit(:title, :body, :user_id)
+        params.require(:post).permit(:title, :body)
       end
     end
   end
