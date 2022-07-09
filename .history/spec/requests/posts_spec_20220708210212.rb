@@ -27,7 +27,6 @@ RSpec.describe 'Posts API', type: :request do
       }.to change { Post.count }.from(1).to(2)
 
       expect(response).to have_http_status(:created)
-      expect(User.count).to eq(2)
     end
   end
 
