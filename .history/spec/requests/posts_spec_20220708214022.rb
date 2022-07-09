@@ -4,35 +4,19 @@ require 'rails_helper'
 
 RSpec.describe 'Posts API', type: :request do
   describe 'GET /posts' do
-    let(:user_1) { FactoryBot.create(:user, username: 'Sanda_Rutherford') }
-    let(:user_2) { FactoryBot.create(:user, username: 'Lyndon_Koss') }
+    let(:user_1) { FactoryBot.create(:user) }
+    let(:user_2) { FactoryBot.create(:user) }
 
     before do
-      FactoryBot.create(:post, id: 55, title: 'Test title', body: 'Test body', user: user_1)
-      FactoryBot.create(:post, id: 56, title: 'Test title2', body: 'Test body2', user: user_2)
+      FactoryBot.create(:post, title: 'Test title', body: 'Test body', user: user_1)
+      FactoryBot.create(:post, title: 'Test title2', body: 'Test body2', user: user_2)
     end
 
     it 'should return all posts' do
       get '/api/v1/posts'
 
       expect(response).to have_http_status(:success)
-      expect(response_body.size).to eq(3)
-      expect(response_body).to eq(
-        [
-          { 'body' => 'Test body',
-            'id' => 55,
-            'title' => 'Test title',
-            'username' => 'Lyndon_Koss' },
-          { 'body' => 'Test body',
-            'id' => 55,
-            'title' => 'Test title',
-            'username' => 'Sanda_Rutherford' },
-          { 'body' => 'Test body2',
-            'id' => 56,
-            'title' => 'Test title2',
-            'username' => 'Lyndon_Koss' }
-        ]
-      )
+      expect(JSON.parse(response.body).size).to eq(3)
     end
   end
 
@@ -48,9 +32,9 @@ RSpec.describe 'Posts API', type: :request do
 
       expect(response).to have_http_status(:created)
       expect(User.count).to eq(2)
-      expect(response_body).to eq(
+      expect(JSON.parse(response.body)).to eq(
         {
-          'id' => 55,
+          'id' => 43,
           'title' => 'Post Title',
           'body' => 'Post body',
           'username' => '24ever'
