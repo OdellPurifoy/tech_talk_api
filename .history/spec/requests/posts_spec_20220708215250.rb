@@ -16,8 +16,8 @@ RSpec.describe 'Posts API', type: :request do
       get '/api/v1/posts'
 
       expect(response).to have_http_status(:success)
-      expect(response_body.size).to eq(3)
-      expect(response_body).to eq(
+      expect(JSON.parse(response.body).size).to eq(3)
+      expect(JSON.parse(response.body)).to eq(
         [
           { 'body' => 'Test body',
             'id' => 55,
@@ -40,7 +40,7 @@ RSpec.describe 'Posts API', type: :request do
     it 'should create a new post' do
       expect do
         post '/api/v1/posts', params: {
-          post: { title: 'Post Title', body: 'Post body' },
+          post: { id: 43, title: 'Post Title', body: 'Post body' },
           user: { first_name: 'Jeff', last_name: 'Gordon', email: 'jg@example.com', username: '24ever',
                   password: '24ever24' }
         }
@@ -48,9 +48,9 @@ RSpec.describe 'Posts API', type: :request do
 
       expect(response).to have_http_status(:created)
       expect(User.count).to eq(2)
-      expect(response_body).to eq(
+      expect(JSON.parse(response.body)).to eq(
         {
-          'id' => 55,
+          'id' => 43,
           'title' => 'Post Title',
           'body' => 'Post body',
           'username' => '24ever'

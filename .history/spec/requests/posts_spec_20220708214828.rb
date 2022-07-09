@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Posts API', type: :request do
   describe 'GET /posts' do
-    let(:user_1) { FactoryBot.create(:user, username: 'Sanda_Rutherford') }
-    let(:user_2) { FactoryBot.create(:user, username: 'Lyndon_Koss') }
+    let(:user_1) { FactoryBot.create(:user, username: "Sanda_Rutherford" ) }
+    let(:user_2) { FactoryBot.create(:user, usernmae: "Lyndon_Koss") }
 
     before do
       FactoryBot.create(:post, id: 55, title: 'Test title', body: 'Test body', user: user_1)
@@ -16,21 +16,21 @@ RSpec.describe 'Posts API', type: :request do
       get '/api/v1/posts'
 
       expect(response).to have_http_status(:success)
-      expect(response_body.size).to eq(3)
-      expect(response_body).to eq(
+      expect(JSON.parse(response.body).size).to eq(3)
+      expect(JSON.parse(response.body)).to eq(
         [
-          { 'body' => 'Test body',
-            'id' => 55,
-            'title' => 'Test title',
-            'username' => 'Lyndon_Koss' },
-          { 'body' => 'Test body',
-            'id' => 55,
-            'title' => 'Test title',
-            'username' => 'Sanda_Rutherford' },
-          { 'body' => 'Test body2',
-            'id' => 56,
-            'title' => 'Test title2',
-            'username' => 'Lyndon_Koss' }
+          {"body"=>"Test body",
+          "id"=>22,
+          "title"=>"Test title",
+          "username"=>"Testuser1wert"},
+          {"body"=>"Test body",
+          "id"=>50,
+          "title"=>"Test title",
+          "username"=>"Sanda_Rutherford"},
+          {"body"=>"Test body2",
+          "id"=>51,
+          "title"=>"Test title2",
+          "username"=>"Lyndon_Koss"}
         ]
       )
     end
@@ -48,9 +48,9 @@ RSpec.describe 'Posts API', type: :request do
 
       expect(response).to have_http_status(:created)
       expect(User.count).to eq(2)
-      expect(response_body).to eq(
+      expect(JSON.parse(response.body)).to eq(
         {
-          'id' => 55,
+          'id' => 43,
           'title' => 'Post Title',
           'body' => 'Post body',
           'username' => '24ever'
